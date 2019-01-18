@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d208356"],{a48e:function(e,n,a){"use strict";a.r(n);var t=function(){var e=this,n=e.$createElement,a=e._self._c||n;return a("app-layout",[a("v-container",[a("h1",[e._v("Receitas")])])],1)},o=[],c=a("01de"),u={components:{"app-layout":c["a"]}},p=u,s=a("2877"),i=a("6544"),l=a.n(i),r=a("a523"),v=Object(s["a"])(p,t,o,!1,null,"bc2b4684",null);v.options.__file="Revenues.vue";n["default"]=v.exports;l()(v,{VContainer:r["a"]})}}]);
+//# sourceMappingURL=chunk-2d208356.0c75f6bf.js.map
