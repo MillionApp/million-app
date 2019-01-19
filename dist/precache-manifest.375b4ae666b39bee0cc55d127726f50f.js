@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/million-app/index.html"
   },
   {
-    "revision": "d405e178e163f345f1729cc0e68f36ce",
+    "revision": "12a3983c9a553685a6753b7ccfd7b63d",
     "url": "/million-app/404.html"
   },
   {
