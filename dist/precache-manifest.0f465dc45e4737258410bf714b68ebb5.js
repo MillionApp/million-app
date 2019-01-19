@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "b1206ccdc79c644fd1d7",
-    "url": "/million-app/css/app.c6e4a9c6.css"
+    "revision": "ed697e90cabd7abf08af",
+    "url": "/million-app/css/app.4bd2d81b.css"
   },
   {
-    "revision": "b1206ccdc79c644fd1d7",
-    "url": "/million-app/js/app.5d4a5c51.js"
+    "revision": "ed697e90cabd7abf08af",
+    "url": "/million-app/js/app.432074ef.js"
   },
   {
-    "revision": "07e9a2fc047a6931fd07",
-    "url": "/million-app/js/chunk-2d0d63f1.14d61d8e.js"
+    "revision": "0296b1af502a5f6e5964",
+    "url": "/million-app/js/chunk-2d0d63f1.bc7a2898.js"
   },
   {
     "revision": "5de393a0ead52fa1b490",
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/million-app/img/logo.373860ce.svg"
   },
   {
-    "revision": "1a4dcb22e0e53fefe3b0447b5579c50c",
+    "revision": "8bbe76767f43f9fa9261bb1f54a17e2a",
     "url": "/million-app/index.html"
   },
   {
