@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/million-app/precache-manifest.0f09598daba6a7f09215f31f87c8bf60.js"
+  "/million-app/precache-manifest.a13b998becd24419a72ab1e42742392c.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "million-app"});
