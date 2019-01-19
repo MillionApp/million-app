@@ -44,6 +44,10 @@ self.__precacheManifest = [
     "url": "/million-app/index.html"
   },
   {
+    "revision": "aac81494e6f2ec2cb63a21b39f9a7122",
+    "url": "/million-app/404.html"
+  },
+  {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
     "url": "/million-app/robots.txt"
   }
