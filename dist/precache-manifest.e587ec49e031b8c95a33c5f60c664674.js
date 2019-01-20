@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "/million-app/img/logo.373860ce.svg"
   },
   {
-    "revision": "9bb7e8d1eb3a8e468801badc4a4b3be7",
+    "revision": "9519d5782e359afd020d2b5cdb43bbe6",
     "url": "/million-app/index.html"
   },
   {
