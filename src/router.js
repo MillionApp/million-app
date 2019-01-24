@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Site from './views/Site.vue'
+import Expenses from './views/Expenses.vue'
+import Revenues from './views/Revenues.vue'
+import Dashboard from './views/Dashboard.vue'
 
 Vue.use(Router)
 
@@ -16,17 +19,17 @@ export default new Router({
     {
       path: '/users/:id/expenses',
       name: 'expenses',
-      component: () => import('./views/Expenses.vue')
+      component: Expenses
     },
     {
       path: '/users/:id/revenues',
       name: 'revenues',
-      component: () => import('./views/Revenues.vue')
+      component: Revenues
     },
     {
       path: '/users/:id/dashboard',
       name: 'dashboard',
-      component: () => import('./views/Dashboard.vue')
+      component: Dashboard
     }
   ]
 })

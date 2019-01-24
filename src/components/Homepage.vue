@@ -26,7 +26,7 @@
               </h1>
               <p class="subheading font-weight-regular">
               {{text}}
-              <br><v-btn rounded color="primary" to="/users/12/dashboard">Cadastrar-se</v-btn>
+              <br><v-btn rounded color="primary" to="/users/12/dashboard">Visitar painel</v-btn>
               </p>
             </div>
           </v-layout>
@@ -49,7 +49,7 @@
             <v-layout row wrap align-center>
 
               <v-flex xs12 md4>
-                <v-card class="elevation-0 transparent">
+                <v-card flat class="elevation-0 transparent">
 
                   <v-card-text class="text-xs-center">
                     <v-icon x-large color="secondary">center_focus_weak</v-icon>
@@ -59,7 +59,7 @@
                     <div class="headline text-xs-center">Onde queremos chegar?</div>
                   </v-card-title>
 
-                  <v-card-text>
+                  <v-card-text class="text-xs-center">
                     O propósito do Million é ajudar você a se educar na gestão de suas finanças e a se planejar,
                     te auxiliando para que alcance cada uma de suas metas.
                     E como faremos isso? De maneira prática, antes de tudo dando visibilidade de suas receitas e despesas.
@@ -71,7 +71,7 @@
               </v-flex>
 
               <v-flex xs12 md4>
-                <v-card class="elevation-0 transparent">
+                <v-card flat class="elevation-0 transparent">
 
                   <v-card-text class="text-xs-center">
                     <v-icon x-large color="secondary">my_location</v-icon>
@@ -81,7 +81,7 @@
                     <div class="headline text-xs-center">A que pé estamos?</div>
                   </v-card-title>
 
-                  <v-card-text>
+                  <v-card-text class="text-xs-center">
                     O Million irá guardar suas receitas e despesas e exibir sua saúde financeira de diferentes maneiras,
                     auxiliando você a usar bem o seu dinheiro. Estamos trabalhando constantemente em nosso painel,
                     afim de tornar esta a melhor experiência financeira de sua vida.
@@ -93,7 +93,7 @@
               </v-flex>
 
               <v-flex xs12 md4>
-                <v-card class="elevation-0 transparent">
+                <v-card flat class="elevation-0 transparent">
 
                   <v-card-text class="text-xs-center">
                     <v-icon x-large color="secondary">sentiment_very_satisfied</v-icon>
@@ -103,7 +103,7 @@
                     <div class="headline text-xs-center">Bora ficar ricos?</div>
                   </v-card-title>
 
-                  <v-card-text>
+                  <v-card-text class="text-xs-center">
                     Nós da equipe Million acreditamos que a educação financeira é a ferramenta que nos protege de inúmeros
                     imprevistos do dia a dia, e nos torna capazes de realizar muitos de nossos sonhos.
                     Não nos cansamos de inovar no propósito de tornar o Brasil um país socialmente igualitário,
