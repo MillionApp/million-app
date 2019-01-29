@@ -1,4 +1,4 @@
-var sub_categories = [
+var categories = [
   {
     id: 'feb4718f-dbbd-4c63-8cf4-63edd6acc922',
     name: 'Fármacia'
@@ -14,7 +14,8 @@ var sub_categories = [
   {
     id: '8fba6893-c3b7-4e48-bd53-f404e2984475',
     name: 'Transporte público'
-  }, {
+  },
+  {
     id: '1e5b6e67-69f4-4bbc-9faf-2ff2fbffbb0a',
     name: 'Vestuário'
   },
@@ -65,7 +66,7 @@ var sub_categories = [
 ]
 
 export default {
-  getSubCategories () {
-    return sub_categories
+  getCategories () {
+    return categories
   }
 }

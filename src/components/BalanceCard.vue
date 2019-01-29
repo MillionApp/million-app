@@ -11,19 +11,13 @@
         >
 
           <v-sparkline
-            :value="lastBalances"
+            :labels="labels"
+            :value="values"
             color="white"
             line-width="2"
             padding="16"
             smooth
-          >
-          <template
-            slot="label"
-            slot-scope="item"
-          >
-          R$ {{ item.value }}
-          </template>
-          </v-sparkline>
+          ></v-sparkline>
 
         </v-sheet>
 
@@ -54,14 +48,14 @@
 export default {
   data () {
     return {
-      lastBalances: [
-        2394.98,
-        9894.98,
-        3984.98,
-        8090.98
-      ],
+      labels: [],
+      values: [],
       currentBalance: 'R$ 8.090,98'
     }
+  },
+  created () {
+    this.labels = Object.keys(this.$store.state.lastBalances)
+    this.values = Object.values(this.$store.state.lastBalances)
   }
 }
 </script>

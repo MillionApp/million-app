@@ -2,6 +2,7 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
+import money from 'v-money'
 import AppLayout from './components/AppLayout.vue'
 import './registerServiceWorker'
 
@@ -13,6 +14,8 @@ import store from './store'
 Vue.component('AppLayout', AppLayout)
 
 Vue.config.productionTip = false
+
+Vue.use(money, { precision: 2 })
 
 new Vue({
   router,

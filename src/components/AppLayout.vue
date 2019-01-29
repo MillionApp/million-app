@@ -13,7 +13,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn flat to="/users/12/dashboard">painel</v-btn> |
+      <v-btn flat to="/users/12/dashboard">Painel</v-btn> |
       <v-btn flat to="/users/12/expenses">Despesas</v-btn> |
       <v-btn flat to="/users/12/revenues">Receitas</v-btn>
     </v-toolbar>

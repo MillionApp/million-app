@@ -16,7 +16,7 @@
         >
 
           <v-sparkline
-            :value="revenuesLastMonths"
+            :value="lastRevenues"
             color="white"
             line-width="2"
             padding="16"
@@ -58,13 +58,11 @@ export default {
   data () {
     return {
       currentRevenueAmount: 'R$ 2.340,90',
-      revenuesLastMonths: [
-        2394.98,
-        9894.98,
-        3984.98,
-        8090.98
-      ]
+      lastRevenues: []
     }
+  },
+  created () {
+    this.lastRevenues = this.$store.state.lastRevenues.flatMap(function (entry) { return entry.amount })
   }
 }
 </script>

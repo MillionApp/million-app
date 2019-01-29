@@ -13,6 +13,12 @@ Vue.mixin({
     },
     goToRevenues (userId) {
       this.$router.push({ name: 'revenues', params: { id: userId } })
+    },
+    formatDate (date) {
+      if (!date) return null
+
+      const [year, month, day] = date.substr(0, 10).split('-')
+      return `${day}/${month}/${year}`
     }
   }
 })
