@@ -142,7 +142,7 @@ var expenses = [
   {
     id: 'd030712e-2073-4f32-b1eb-95a7bb33c901',
     amount: 200.0,
-    made_at: '2018-15-25',
+    made_at: '2018-12-25',
     category_id: '9f526728-17f2-4ed6-8d79-c2443eea6f65',
     description: 'Consulta com oftalmologista'
   },
@@ -263,32 +263,79 @@ var revenues = [
   }
 ]
 
-var monthlyBalances = {
-  'nov/18': 2394.98,
-  'dez/18': 6155.26,
-  'jan/19': 3491.80,
-  'fev/19': 4000.00
-}
-
 function sortedEntries (entries) {
   return entries.sort(function (entry) {
     return new Date(entry.made_at.split('-'))
   })
 }
 
+function concatToSet (ary1 = [], ary2 = []) {
+  ary2.forEach(function (key) {
+    if (!ary1.includes(key)) ary1.push(key)
+  })
+  return ary1.sort()
+}
+
 function groupByMonth (entries) {
-  return sortedEntries(expenses).reduce(function (res, entry) {
+  return sortedEntries(entries).reduce(function (res, entry) {
     var entryDate = new Date(entry.made_at.split('-'))
-    var key = `${(entryDate.getMonth + 1).toString().padStart(2, '0')}/${entryDate.getFullYear()}`
-    res[key] = res[key] || []
-    return res.push(entry)
+    var key = `${(entryDate.getMonth() + 1).toString().padStart(2, '0')}/${entryDate.getFullYear()}`
+    if (!res[key]) res[key] = []
+    res[key].push(entry)
+    return res
   }, {})
 }
 
+function sum (collection, initialValue = 0) {
+  return collection.reduce(function (res, entry) {
+    res += entry.amount
+    return res
+  }, initialValue)
+}
+
+// expected params:
+//   keys Array[]
+//   key's format: '01/2019' => MM/YYYY
+function orderKeys(keys) {
+  return keys.sort(function(date) {
+    return date.split('/').reverse().join('/')
+  })
+}
+
+function balanceByMonth (n = 0) {
+  var revs = groupByMonth(revenues)
+  var exps = groupByMonth(expenses)
+  var keys = concatToSet(Object.keys(revs), Object.keys(exps))
+  var lastKeys = n ? orderKeys(keys).slice(-n) : orderKeys(keys)
+  var totalExpenses = {}
+  var totalRevenues = {}
+  var totalBalance = {}
+
+  lastKeys.forEach(function (key) {
+    if (!totalRevenues[key]) totalRevenues[key] = 0
+    totalRevenues[key] += sum(revs[key])
+
+    if (!totalExpenses[key]) totalExpenses[key] = 0
+    totalExpenses[key] += sum(exps[key])
+
+    if (!totalBalance[key]) totalBalance[key] = 0
+    totalBalance[key] += totalRevenues[key] - totalExpenses[key]
+  })
+  return totalBalance
+}
+
+function currentMonthKey () {
+  var currentDate = new Date()
+  return `${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}`
+}
+
+function currentEntryAmount(entries) {
+  return groupByMonth(entries)[currentMonthKey()].reduce(function (acc, entry) {
+    return acc += entry.amount
+  }, 0)
+}
+
 export default {
-  getLastBalances () {
-    return monthlyBalances
-  },
   getMonthlyExpenses () {
     return groupByMonth(expenses)
   },
@@ -301,10 +348,22 @@ export default {
   getRevenues () {
     return sortedEntries(revenues)
   },
-  lastExpenses (n = 4) {
+  currentBalance () {
+    return balanceByMonth()[currentMonthKey()]
+  },
+  currentExpenses () {
+    return currentEntryAmount(expenses)
+  },
+  currentRevenues () {
+    return currentEntryAmount(revenues)
+  },
+  lastBalances (n) {
+    return balanceByMonth(n)
+  },
+  lastExpenses (n = 12) {
     return sortedEntries(expenses).slice(-n)
   },
-  lastRevenues (n = 4) {
+  lastRevenues (n = 12) {
     return sortedEntries(revenues).slice(-n)
   }
 }

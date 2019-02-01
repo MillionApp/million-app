@@ -50,10 +50,11 @@ export default {
     return {
       labels: [],
       values: [],
-      currentBalance: 'R$ 8.090,98'
+      currentBalance: ''
     }
   },
   created () {
+    this.currentBalance = 'R$ ' + this.$store.state.currentBalance.toFixed(2)
     this.labels = Object.keys(this.$store.state.lastBalances)
     this.values = Object.values(this.$store.state.lastBalances)
   }

@@ -35,7 +35,7 @@
         <v-card-text class="pt-0">
 
           <div class="title font-weight-light m-2">Receitas</div>
-          <div class="subheading font-weight-light grey--text text-xs-right">{{ currentRevenueAmount }}</div>
+          <div class="subheading font-weight-light grey--text text-xs-right">{{ currentRevenues }}</div>
           <v-divider class="my-2"></v-divider>
 
           <v-icon
@@ -57,11 +57,12 @@
 export default {
   data () {
     return {
-      currentRevenueAmount: 'R$ 2.340,90',
+      currentRevenues: '',
       lastRevenues: []
     }
   },
   created () {
+    this.currentRevenues = 'R$ ' + this.$store.state.currentRevenues.toFixed(2)
     this.lastRevenues = this.$store.state.lastRevenues.flatMap(function (entry) { return entry.amount })
   }
 }

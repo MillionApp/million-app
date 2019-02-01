@@ -54,11 +54,12 @@
 export default {
   data () {
     return {
-      currentExpenses: 'R$ 5.750,00',
+      currentExpenses: '',
       lastExpenses: []
     }
   },
   created () {
+    this.currentExpenses = 'R$ ' + this.$store.state.currentExpenses.toFixed(2)
     this.lastExpenses = this.$store.state.lastExpenses.flatMap(function (entry) { return entry.amount })
   }
 }

@@ -4,7 +4,7 @@
       <v-card class="mb-3 mx-auto transparent" flat @click="goToDashboard(12)">
         <v-card-text class="pa-0">
           <h1 class="title md-2 font-weight-bold">Receitas</h1>
-          <div class="subheading font-weight-bold grey--text m-2">Insira e acompanhe seus salários, rendimento, bonús e mais aqui</div>
+          <div class="subheading font-weight-bold grey--text m-2">Insira e acompanhe seus salários, rendimentos, bonús e mais aqui</div>
         </v-card-text>
       </v-card>
 

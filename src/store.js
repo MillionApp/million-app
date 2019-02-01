@@ -6,14 +6,19 @@ import EntryApi from './data/entries.js'
 
 Vue.use(Vuex)
 
+const numberOfObjects = 4
+
 export default new Vuex.Store({
   state: {
     categories: CategoryApi.getCategories(),
-    lastBalances: EntryApi.getLastBalances(),
     expenses: EntryApi.getExpenses(),
     revenues: EntryApi.getRevenues(),
-    lastExpenses: EntryApi.lastExpenses(),
-    lastRevenues: EntryApi.lastRevenues()
+    currentBalance: EntryApi.currentBalance(),
+    currentExpenses: EntryApi.currentExpenses(),
+    currentRevenues: EntryApi.currentRevenues(),
+    lastBalances: EntryApi.lastBalances(numberOfObjects),
+    lastExpenses: EntryApi.lastExpenses(numberOfObjects),
+    lastRevenues: EntryApi.lastRevenues(numberOfObjects)
   },
   mutations: {
     addEntry (state, payload) {
