@@ -5,7 +5,7 @@
 
         <v-sheet
           class="v-sheet--offset mx-auto px-2"
-          color="red lighten-1"
+          color="red accent-1"
           elevation="12"
           max-width="calc(100% - 32px)"
         >
@@ -21,7 +21,7 @@
               slot="label"
               slot-scope="item"
             >
-            R$ {{ item.value }}
+            {{ item.value | currencyFormat }}
             </template>
           </v-sparkline>
 
@@ -31,7 +31,7 @@
 
           <div class="title font-weight-light m-2">Despesas</div>
 
-          <div class="subheading font-weight-light grey--text text-xs-right">{{ currentExpenses }}</div>
+          <div class="subheading font-weight-light grey--text text-xs-right">{{ currentExpenses | currencyFormat }}</div>
 
           <v-divider class="my-2"></v-divider>
 
@@ -42,7 +42,14 @@
             access_time
           </v-icon>
 
-            <span class="caption grey--text font-weight-light">Atualizado em {{ new Date().toLocaleString() }}</span>
+          <span class="caption grey--text font-weight-light">Atualizado em {{ new Date().toLocaleString() }}</span>
+
+          <v-entry-form
+            :categories="categories"
+            entry-type="expense"
+            :binding="addButton"
+            icon
+          ></v-entry-form>
 
         </v-card-text>
       </v-card>
@@ -51,16 +58,44 @@
 </template>
 
 <script>
+import EntryForm from './EntryForm'
+
 export default {
   data () {
     return {
+      addButton: {
+        absolute: true,
+        dark: true,
+        fab: true,
+        bottom: true,
+        small: true,
+        right: true,
+        color: 'deep-orange'
+      },
       currentExpenses: '',
-      lastExpenses: []
+      lastExpenses: [],
+      categories: [],
+      expenses: []
     }
   },
   created () {
-    this.currentExpenses = 'R$ ' + this.$store.state.currentExpenses.toFixed(2)
-    this.lastExpenses = this.$store.state.lastExpenses.flatMap(function (entry) { return entry.amount })
+    this.updateExpenses()
+    this.expenses = this.$store.state.expenses
+    this.lastExpenses = this.$store.getters.lastExpenses(4).flatMap(function (entry) { return entry.amount })
+    this.categories = this.$store.state.categories
+  },
+  components: {
+    'v-entry-form': EntryForm
+  },
+  watch: {
+    expenses () {
+      this.updateExpenses()
+    }
+  },
+  methods: {
+    updateExpenses () {
+      this.currentExpenses = this.$store.getters.currentExpenses
+    }
   }
 }
 </script>

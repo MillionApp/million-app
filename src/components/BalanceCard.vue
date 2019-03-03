@@ -5,7 +5,7 @@
 
         <v-sheet
           class="v-sheet--offset mx-auto px-2"
-          color="cyan"
+          :color="currentBalance >=0 ? 'cyan' : 'deep-orange'"
           elevation="12"
           max-width="calc(100% - 32px)"
         >
@@ -25,7 +25,7 @@
 
           <div class="title font-weight-light m-2">Saldo</div>
 
-          <div class="subheading font-weight-light grey--text text-xs-right"> {{ currentBalance }}</div>
+          <div class="subheading font-weight-light grey--text text-xs-right"> {{ currentBalance | currencyFormat }}</div>
 
           <v-divider class="my-2"></v-divider>
 
@@ -54,9 +54,9 @@ export default {
     }
   },
   created () {
-    this.currentBalance = 'R$ ' + this.$store.state.currentBalance.toFixed(2)
-    this.labels = Object.keys(this.$store.state.lastBalances)
-    this.values = Object.values(this.$store.state.lastBalances)
+    this.currentBalance = this.$store.state.balance
+    this.labels = Object.keys(this.$store.getters.lastBalances())
+    this.values = Object.values(this.$store.getters.lastBalances())
   }
 }
 </script>

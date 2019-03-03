@@ -31,7 +31,7 @@
       <template slot="items" slot-scope="props">
         <td>{{ props.item.description }}</td>
         <td class="text-xs_right">{{ categoryName(props.item.category_id) }}</td>
-        <td class="text-xs_right">{{ numberToCurrency(props.item.amount) }}</td>
+        <td class="text-xs_right">{{ props.item.amount | currencyFormat }}</td>
         <td class="text-xs_right">{{ formatDate(props.item.made_at) }}</td>
       </template>
       <v-alert slot="no-results" :value="true" color="error" icon="warning">
@@ -76,9 +76,6 @@ export default {
       })
 
       return found.name
-    },
-    numberToCurrency (number) {
-      return Number(number).toFixed(2).replace('.', ',')
     }
   },
   components: {

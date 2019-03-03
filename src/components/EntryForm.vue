@@ -1,6 +1,9 @@
 <template>
   <v-dialog v-model="dialog" max-width="600px">
-    <v-btn slot="activator" color="primary" dark class="mb-2">Nova entrada</v-btn>
+    <v-btn slot="activator" :color="binding ? binding.color || 'primary' : 'primary'" dark class="mb-2" v-bind="binding">
+      <v-icon v-if="icon">add</v-icon>
+      <span v-else>Nova Entrada</span>
+    </v-btn>
     <v-card>
       <v-card-title>
         <span class="headline">{{ formTitle }}</span>
@@ -25,12 +28,19 @@
             </v-flex>
 
             <v-flex xs12 sm6>
-              <v-text-field
-                v-model="editedEntry.amount"
-                v-money="money"
-                label="Valor"
-                prepend-icon="R$"
-              ></v-text-field>
+              <div class="v-input v-text-field theme--light">
+                <div class="v-input__control">
+                  <div class="v-input__slot">
+                    <div class="v-text-field__slot">
+                      <money
+                         v-model="editedEntry.amount"
+                         v-bind="money"
+                         label="Valor"
+                         ></money>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </v-flex>
 
             <v-flex xs12 sm6>
@@ -75,7 +85,9 @@
 export default {
   props: {
     categories: Array,
-    entryType: String
+    entryType: String,
+    binding: Object,
+    icon: Boolean
   },
   data () {
     return {
@@ -87,6 +99,7 @@ export default {
         decimal: ',',
         thousands: '.',
         precision: 2,
+        prefix: 'R$ ',
         masked: false
       },
       defaultEntry: {
@@ -131,15 +144,12 @@ export default {
         // TODO: Implementar método de edição
         // Object.assign(this.entries[this.editedIndex], this.editedEntry)
       } else {
-        this.$store.commit('addEntry', {
-          type: this.entryType,
+        this.$store.dispatch('createEntry', {
+          operation: this.entryType,
           entry: this.editedEntry
         })
       }
       this.close()
-    },
-    entryMutation () {
-      return this.entryType === 'expense' ? 'addExpense' : 'addRevenue'
     },
     parseDate (date) {
       if (!date) return null

@@ -5,11 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "cname": "echo 'millionapp.com.br' >> dist/CNAME"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "ajv": "^6.0.0",
+    "numeral": "^2.0.6",
     "register-service-worker": "^1.5.2",
     "v-money": "^0.8.1",
     "vue": "^2.5.21",

@@ -1,3 +1,4 @@
+import 'numeral/locales'
 import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
@@ -16,6 +17,18 @@ Vue.component('AppLayout', AppLayout)
 Vue.config.productionTip = false
 
 Vue.use(money, { precision: 2 })
+
+var numeral = require('numeral')
+numeral.defaultFormat('$ 0.00[,]00')
+numeral.locale('pt-br')
+Vue.mixin({
+  filters: {
+    currencyFormat: function (value) {
+      return numeral(value).format()
+    }
+  }
+
+})
 
 new Vue({
   router,

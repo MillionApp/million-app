@@ -4,8 +4,6 @@ git branch gh-pages
 
 npm run build
 
-npm run cname
-
 git add dist
 
 if [[ $1 = '-m' ]]

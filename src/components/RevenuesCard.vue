@@ -26,7 +26,7 @@
               slot="label"
               slot-scope="item"
             >
-            R$ {{ item.value }}
+            {{ item.value | currencyFormat }}
             </template>
           </v-sparkline>
 
@@ -35,17 +35,19 @@
         <v-card-text class="pt-0">
 
           <div class="title font-weight-light m-2">Receitas</div>
-          <div class="subheading font-weight-light grey--text text-xs-right">{{ currentRevenues }}</div>
+          <div class="subheading font-weight-light grey--text text-xs-right">{{ currentRevenues | currencyFormat }}</div>
           <v-divider class="my-2"></v-divider>
 
-          <v-icon
-            class="mr-2"
-            small
-          >
-            access_time
-          </v-icon>
+          <v-icon class="mr-2" small>access_time</v-icon>
 
-            <span class="caption grey--text font-weight-light">Atualizado em {{ new Date().toLocaleString() }}</span>
+          <span class="caption grey--text font-weight-light">Atualizado em {{ new Date().toLocaleString() }}</span>
+
+          <v-entry-form
+            :categories="categories"
+            entry-type="revenue"
+            :binding="addButton"
+            icon
+          ></v-entry-form>
 
         </v-card-text>
       </v-card>
@@ -54,16 +56,44 @@
 </template>
 
 <script>
+import EntryForm from './EntryForm'
+
 export default {
   data () {
     return {
+      addButton: {
+        absolute: true,
+        dark: true,
+        fab: true,
+        bottom: true,
+        small: true,
+        right: true,
+        color: 'green accent-4'
+      },
       currentRevenues: '',
-      lastRevenues: []
+      lastRevenues: [],
+      categories: [],
+      revenues: []
     }
   },
   created () {
-    this.currentRevenues = 'R$ ' + this.$store.state.currentRevenues.toFixed(2)
-    this.lastRevenues = this.$store.state.lastRevenues.flatMap(function (entry) { return entry.amount })
+    this.currentRevenues = this.$store.getters.currentRevenues
+    this.updateRevenues()
+    this.lastRevenues = this.$store.getters.lastRevenues(4).flatMap(function (entry) { return entry.amount })
+    this.categories = this.$store.state.categories
+  },
+  components: {
+    'v-entry-form': EntryForm
+  },
+  watch: {
+    revenues () {
+      this.updateRevenues()
+    }
+  },
+  methods: {
+    updateRevenues () {
+      this.revenues = this.$store.state.revenues
+    }
   }
 }
 </script>

@@ -269,101 +269,11 @@ function sortedEntries (entries) {
   })
 }
 
-function concatToSet (ary1 = [], ary2 = []) {
-  ary2.forEach(function (key) {
-    if (!ary1.includes(key)) ary1.push(key)
-  })
-  return ary1.sort()
-}
-
-function groupByMonth (entries) {
-  return sortedEntries(entries).reduce(function (res, entry) {
-    var entryDate = new Date(entry.made_at.split('-'))
-    var key = `${(entryDate.getMonth() + 1).toString().padStart(2, '0')}/${entryDate.getFullYear()}`
-    if (!res[key]) res[key] = []
-    res[key].push(entry)
-    return res
-  }, {})
-}
-
-function sum (collection, initialValue = 0) {
-  return collection.reduce(function (res, entry) {
-    res += entry.amount
-    return res
-  }, initialValue)
-}
-
-// expected params:
-//   keys Array[]
-//   key's format: '01/2019' => MM/YYYY
-function orderKeys(keys) {
-  return keys.sort(function(date) {
-    return date.split('/').reverse().join('/')
-  })
-}
-
-function balanceByMonth (n = 0) {
-  var revs = groupByMonth(revenues)
-  var exps = groupByMonth(expenses)
-  var keys = concatToSet(Object.keys(revs), Object.keys(exps))
-  var lastKeys = n ? orderKeys(keys).slice(-n) : orderKeys(keys)
-  var totalExpenses = {}
-  var totalRevenues = {}
-  var totalBalance = {}
-
-  lastKeys.forEach(function (key) {
-    if (!totalRevenues[key]) totalRevenues[key] = 0
-    totalRevenues[key] += sum(revs[key])
-
-    if (!totalExpenses[key]) totalExpenses[key] = 0
-    totalExpenses[key] += sum(exps[key])
-
-    if (!totalBalance[key]) totalBalance[key] = 0
-    totalBalance[key] += totalRevenues[key] - totalExpenses[key]
-  })
-  return totalBalance
-}
-
-function currentMonthKey () {
-  var currentDate = new Date()
-  return `${(currentDate.getMonth() + 1).toString().padStart(2, '0')}/${currentDate.getFullYear()}`
-}
-
-function currentEntryAmount(entries) {
-  return groupByMonth(entries)[currentMonthKey()].reduce(function (acc, entry) {
-    return acc += entry.amount
-  }, 0)
-}
-
 export default {
-  getMonthlyExpenses () {
-    return groupByMonth(expenses)
-  },
-  getMonthlyRevenues () {
-    return groupByMonth(revenues)
-  },
   getExpenses () {
     return sortedEntries(expenses)
   },
   getRevenues () {
     return sortedEntries(revenues)
-  },
-  currentBalance () {
-    return balanceByMonth()[currentMonthKey()]
-  },
-  currentExpenses () {
-    return currentEntryAmount(expenses)
-  },
-  currentRevenues () {
-    return currentEntryAmount(revenues)
-  },
-  lastBalances (n) {
-    return balanceByMonth(n)
-  },
-  lastExpenses (n = 12) {
-    return sortedEntries(expenses).slice(-n)
-  },
-  lastRevenues (n = 12) {
-    return sortedEntries(revenues).slice(-n)
   }
 }

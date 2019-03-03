@@ -26,7 +26,7 @@
               </h1>
               <p class="subheading font-weight-regular">
               {{text}}
-              <br><v-btn rounded color="primary" to="/users/12/dashboard">Visitar painel</v-btn>
+              <br><v-btn rounded color="primary" to="/users/12/dashboard">Visite a aplicação</v-btn>
               </p>
             </div>
           </v-layout>
@@ -39,7 +39,7 @@
       <v-layout column wrap class="my-5" align-center>
         <v-flex xs12 md4 class="my-3">
           <div class="text-xs-center">
-            <h2 class="headline">Experimente gratuitamente o melhor aplicativo de educação financeira que você já viu</h2>
+            <h2 class="headline">Use gratuitamente o melhor aplicativo de educação financeira da Internet!</h2>
             <span class="subheading">A forma mais fácil e eficaz de você tomar o controle da realização dos seus sonhos</span>
           </div>
         </v-flex>
